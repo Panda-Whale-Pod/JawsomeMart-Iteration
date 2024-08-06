@@ -7,7 +7,9 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm run dev --prefix frontend",
-    "test": "npm run test --prefix frontend",
+    "frontend-test": "npm run test --prefix frontend",
+    "backend-test": "jest",
+    "test-suite": "concurrently \"npm run frontend-test\" \"npm run backend-test\"",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4"
   }
 }
