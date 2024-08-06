@@ -4,13 +4,13 @@ This application is a React SPA (Single Page Application) e-commerce solution th
 
 ## IMPORTANT
 
-When in development mode (see Env Variable section) the application is configured to use port 3000 (frontend) and port 5000 (backend).
-On a Mac computer you may need to turn off AirPlay, as in the recent Mac OS releases AirPlay listens on ports 5000 & 7000.
-In order to free port 5000 for use, to turn off AirPlay when using a Mac.
+When in development mode (see Env Variable section) the application is configured to use port 3000 (frontend) and port 3030 (backend).
+On a Mac computer you may need to turn off AirPlay, as in the recent Mac OS releases AirPlay listens on ports 3030 & 7000.
+In order to free port 3030 for use, to turn off AirPlay when using a Mac.
 
 - Open System Settings.
 - Search for 'AirPlay Receiver' and select that option in the search results.
-- Toggle 'AirPlay Receiver' to the off position. This will free port 5000 on your system.
+- Toggle 'AirPlay Receiver' to the off position. This will free port 3030 on your system.
 
 ## Usage
 
@@ -22,7 +22,7 @@ Use the `.env` to configure environment variables. Change the JWT_SECRET to what
 
 ```
 NODE_ENV = development
-PORT = 5000
+PORT = 3030
 MONGO_URI = your mongodb uri
 JWT_SECRET = 'abc123'
 ```
@@ -41,7 +41,7 @@ cd ..
 ```
 # these commands are run in the root directory of the project
 
-# Run frontend (:3000) & backend (:5000)
+# Run frontend (:3000) & backend (:3030)
 npm run dev
 
 # Run backend only
