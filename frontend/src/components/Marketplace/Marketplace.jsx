@@ -7,9 +7,11 @@
  */
 
 // Importing necessary tools
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import Product from './Product.jsx';
+import { paginationFilter } from './helpers.jsx';
+import Pagination from './Pagination.jsx';
 
 // Importing CSS file
 import './Marketplace.css';
@@ -19,6 +21,10 @@ const Marketplace = () => {
     
     // Creates state array to store Product components
     const [displayedProducts, setProducts] = useState([]);
+    // Create state to keep track of the current page number
+    const [currentPage, setCurrentPage] = useState(1);
+    // Create state to keep track of posts per page
+    const [postsPerPage, setPostsPerPage] = useState(6);
 
     // Creates a new array to hold all products returned from db
     // const allProducts = [];
@@ -63,17 +69,39 @@ const Marketplace = () => {
             })
     };
 
+
+    // get components returns an array of newProducts
+    // From this
+
     // Calls the getComponents function so we can render the products
     useEffect(() => {
         getComponents();
+        // this getcomponents first updates displayedProducts- but now I'd like to 
+        // have the state that this updates pass into a function which would filter the displayedProducts array
+        // based on categories, then I will like that returned array to be passed through
+        // another function that would change the displyaed products based on the paginated
+        // parameters
         console.log("hit")
     }, []);
+
+    const paginationFilteredProducts = useMemo(() => {
+        return paginationFilter(displayedProducts, currentPage, postsPerPage);
+    }, [displayedProducts, currentPage, postsPerPage])
 
     // Returns a styled div containing the rendered products
     return (
         <div className="product-display">
-            { displayedProducts }
+
+            {/* { displayedProducts } */}
+            {paginationFilteredProducts}
+            <Pagination
+                displayedProducts={displayedProducts.length}
+                postsPerPage={postsPerPage}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+            />
         </div>
+
     );
 };
 
