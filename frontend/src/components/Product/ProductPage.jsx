@@ -1,34 +1,51 @@
-// Importing required dependencies
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as cartService from '../../services/cartService.js';
-// Importing TailwindCSS file
 import './tailwind.css';
 
 const ProductPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch the product data from the server using the id
         fetch(`/api/products/${id}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 console.log(data);
                 setProduct(data);
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching product data:', error);
+                setError(error);
+                setLoading(false);
             });
     }, [id]);
 
-    // Function that allows users to add an item to their cart
     const addProductToCart = () => {
-        // Calls imported function, passing in Object ID
-        cartService.add({ id: product.id })
+        cartService.add({ id: product._id })
             .then(() => {
                 alert('Item added to cart!');
             });
+    };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error loading product: {error.message}</div>;
+    }
+
+    if (!product) {
+        return <div>Product not found</div>;
     }
 
     return (
@@ -39,7 +56,7 @@ const ProductPage = () => {
             </div>
             <h4 className='text-bold'>
                 ${product.price} USD
-                <button onClick={addProductToCart}>
+                <button className="button" onClick={addProductToCart}>
                     Add to Cart
                 </button>
                 Item Category: {product.category}
@@ -48,7 +65,7 @@ const ProductPage = () => {
                 About This Item: {product.description}
             </div>
             <div>
-                <h2>Recommended Products</h2>
+                {/*<h2>Recommended Products</h2>*/}
             </div>
         </div>
     );

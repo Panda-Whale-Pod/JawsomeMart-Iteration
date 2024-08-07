@@ -27,7 +27,7 @@
     justify-content: center;
   }
 
-  .product-box .image-container {
+.image-container {
     height: 450px;
     display: flex;
     flex-direction: column;
@@ -56,7 +56,7 @@
     border: none;
   }
 
-  button {
+.button {
     border-radius: 30px;
     border: 1px solid rgb(90, 90, 90);
     padding-left: 10px;
@@ -67,7 +67,7 @@
     cursor: pointer;
   }
 
-  .product-box .description-box {
+.description-box {
     border: none;
     border-radius: 8px;
     margin: 5px;

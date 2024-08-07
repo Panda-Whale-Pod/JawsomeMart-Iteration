@@ -21,7 +21,7 @@ const Product = (props) => {
 
     // function that will render the product page when title of product is clicked
     const navigateToProductPage = () => {
-        navigate(`/products/${objID}`);
+        navigate(`/products/${props.product_id}`);
     }
 
     // Returns a product div to be rendered in the marketplace
