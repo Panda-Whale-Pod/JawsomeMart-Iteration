@@ -30,7 +30,7 @@ const Product = (props) => {
     return (
         <div className="product-box" onClick={renderProductPage}>
 
-            <h3 className="h-3">
+            <h3 className="text-red-600">
                 {props.title}
             </h3>
 
