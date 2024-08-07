@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {getProducts, getOneProduct} = require('../controllers/productController');
 
+
 router.get('/products', getProducts,(req,res)=>{
     res.status(200).json(res.locals.allProducts)
 })
