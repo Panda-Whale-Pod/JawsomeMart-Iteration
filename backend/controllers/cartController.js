@@ -82,6 +82,20 @@ cartController.removeItem = async (req, res, next) => {
   }
 };
 
+cartController.deleteCart = async (req,res,next) => {
+  try {
+    const userId = req.user.id;
+    const cartDeleted = await Cart.findOneAndDelete({ user_id: userId })
+    return res.json(cartDeleted)
+
+  } catch (err) {
+    return next({
+      message: 'error in deleteCart: ' + err,
+      log: err,
+    });
+  }
+}
+
 module.exports = cartController;
 
 // cartController.createCart = async (req, res, next) => {

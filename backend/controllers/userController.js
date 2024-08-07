@@ -55,6 +55,24 @@ const userController = {
       });
     }
   },
+
+
+  async userDelete (req,res,next) {
+    try {
+      
+      const userId = req.user.id;
+      const userDeleted = await User.findOneAndDelete({ _id: userId })
+      
+      return res.json(userDeleted)
+
+    } catch (err) {
+      return next({
+        message: 'error in user delete: ' + err,
+        log: err,
+      });
+    }
+  },
+
 };
 
 module.exports = userController;
