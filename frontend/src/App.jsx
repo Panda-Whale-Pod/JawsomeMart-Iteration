@@ -1,6 +1,6 @@
 import { useState, createContext,useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import './tailwind.css';
+// import './tailwind.css';
 
 
 import Navbar from './components/Navbar/Navbar';

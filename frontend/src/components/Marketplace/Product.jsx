@@ -29,11 +29,9 @@ const Product = (props) => {
     // Returns a product div to be rendered in the marketplace
     return (
         <div className="product-box" onClick={renderProductPage}>
-
-            <h3 className="text-red-600">
+            <h3>
                 {props.title}
             </h3>
-
 
             <div className="image-container">            
                 <img src={props.image}/>
@@ -50,8 +48,6 @@ const Product = (props) => {
             {/* <div className="description-box">
                 {props.description}
             </div> */}
-
-
         </div>
     )
 }
