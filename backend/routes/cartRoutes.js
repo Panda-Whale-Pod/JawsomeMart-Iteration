@@ -17,4 +17,6 @@ router.post(
 
 router.get('/', authenticate, cartController.getCart, (req, res) => {});
 
+router.delete('/delete', authenticate, cartController.deleteCart, (req, res) => {});
+
 module.exports = router;
