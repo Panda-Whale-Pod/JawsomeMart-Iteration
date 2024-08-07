@@ -33,11 +33,20 @@ const Marketplace = () => {
         setProducts(() => {
           // Saves the current array in newProducts
           const newProducts = [];
-          const oldArr = res.data;
-          console.log('old arr', oldArr);
-          const arr = oldArr.filter((product) => {
-            return product.category === 'shoes';
-          });
+          let arr;
+          if (chosenCategory !== '') {
+            console.log('noticed chosen category :', chosenCategory);
+            arr = [];
+            const returnedArr = res.data;
+            for (let i = 0; i < returnedArr.length; i++) {
+              if (returnedArr[i].category === chosenCategory) {
+                console.log('category match: ', returnedArr[i]);
+                arr.push(returnedArr[i]);
+              }
+            }
+          } else {
+            arr = res.data;
+          }
           console.log('arr: ', arr);
           // Pushes product components to an array passing in data as props
           for (let i = 0; i < arr.length; i++) {
@@ -72,7 +81,7 @@ const Marketplace = () => {
   useEffect(() => {
     getComponents();
     console.log('hit');
-  }, []);
+  }, [chosenCategory]);
 
   const categoryTitles = [
     'clothes',
@@ -83,9 +92,13 @@ const Marketplace = () => {
     'furniture',
   ];
 
-  const categoryClickHandler = () => {
-    console.log('category in handler', category);
-    setChosenCategory(category);
+  const categoryClickHandler = (e) => {
+    console.log('category in handler', e.target.id);
+    setChosenCategory(e.target.id);
+    // const newProducts = displayedProducts.filter((product) => {
+    //   return product.category === chosenCategory;
+    // });
+    // setProducts(newProducts);
   };
 
   const categoryButtons = categoryTitles.map((category, index) => {
