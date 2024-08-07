@@ -34,18 +34,6 @@ const Marketplace = () => {
       });
   }, []);
 
-  useEffect(() => {
-    if (chosenCategory !== '') {
-      const arr = [];
-      for (let i = 0; i < arrayOfProducts.length; i++) {
-        if (arrayOfProducts[i].category === chosenCategory) {
-          arr.push(arrayOfProducts[i]);
-        }
-      }
-      displayMarketProducts(arr);
-    }
-  }, [chosenCategory]);
-
   const displayMarketProducts = (arr) => {
     const newProducts = [];
     for (let i = 0; i < arr.length; i++) {
@@ -78,6 +66,14 @@ const Marketplace = () => {
 
   const categoryClickHandler = (e) => {
     setChosenCategory(e.target.id);
+    let newCategory = e.target.id;
+    const arr = [];
+    for (let i = 0; i < arrayOfProducts.length; i++) {
+      if (arrayOfProducts[i].category === newCategory) {
+        arr.push(arrayOfProducts[i]);
+      }
+    }
+    displayMarketProducts(arr);
   };
 
   // Returns a styled div containing the rendered products
