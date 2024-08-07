@@ -18,6 +18,7 @@ import './Marketplace.css';
 const Marketplace = () => {
   // Creates state array to store Product components
   const [displayedProducts, setProducts] = useState([]);
+  const [chosenCategory, setChosenCategory] = useState('');
 
   // Creates a new array to hold all products returned from db
   // const allProducts = [];
@@ -32,7 +33,11 @@ const Marketplace = () => {
         setProducts(() => {
           // Saves the current array in newProducts
           const newProducts = [];
-          const arr = res.data;
+          const oldArr = res.data;
+          console.log('old arr', oldArr);
+          const arr = oldArr.filter((product) => {
+            return product.category === 'shoes';
+          });
           console.log('arr: ', arr);
           // Pushes product components to an array passing in data as props
           for (let i = 0; i < arr.length; i++) {
@@ -78,9 +83,19 @@ const Marketplace = () => {
     'furniture',
   ];
 
+  const categoryClickHandler = () => {
+    console.log('category in handler', category);
+    setChosenCategory(category);
+  };
+
   const categoryButtons = categoryTitles.map((category, index) => {
     return (
-      <button className='categoryButton' key={index}>
+      <button
+        className='categoryButton'
+        id={category}
+        key={index}
+        onClick={categoryClickHandler}
+      >
         {category}
       </button>
     );
