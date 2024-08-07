@@ -19,20 +19,27 @@ const Product = (props) => {
             })
     }
 
+    // function that will render the product page when title of product is clicked
+    const renderProductPage = () => {
+        return (
+            <Product />
+        )
+    }
+
     // Returns a product div to be rendered in the marketplace
     return (
-        <div className="product-box">
+        <div className="product-box" onClick={renderProductPage}>
 
-            <h3>
+            <h3 className="h-3">
                 {props.title}
             </h3>
+
 
             <div className="image-container">            
                 <img src={props.image}/>
             </div>
 
-
-            <h4>
+            <h4 className='text-bold'>
                 ${props.price} USD
                 <button onClick={ addProductToCart }>
                     Add to Cart

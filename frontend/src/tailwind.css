@@ -1,4 +1,8 @@
-/* .product-box {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.product-box {
     background: rgb(255, 255, 255);
     width: 450px;
     height: 600px;
@@ -8,6 +12,10 @@
     margin: 20px;
     text-align: center;
     justify-content: center;
+}
+
+.product-box:hover {
+    background: grey;
 }
 
 * {
@@ -42,7 +50,7 @@
   h3 {
     border: none;
     padding: 15px;
-    height: 70px;
+    height: 80px;
   }
 
   h4 {
@@ -67,4 +75,4 @@
     border: none;
     border-radius: 8px;
     margin: 5px;
-  } */
+  }
