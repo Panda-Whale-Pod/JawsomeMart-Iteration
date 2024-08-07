@@ -47,3 +47,28 @@ const ProductPage = (props) => {
 }
 
 export default ProductPage; 
+
+/*
+Test: 
+import { expect, test } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { userEvent } from '@testing-library/user-event'
+
+test('Product page renders when product is clicked', async () => {
+  render(
+    <ProductPage page="http://localhost:3000/Marketplace/product" />,
+  )
+
+  const link = screen.getByText('Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops')
+
+  expect(link).toHaveAccessibleName('Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops')
+
+  const cart = screen.getByText('Add to Cart')
+  await userEvent.click(cart)
+  expect(link).toHaveAccessibleName('Item added to cart')
+
+  const cart = screen.getByText('Back')
+  await userEvent.click(back)
+  expect(link).toHaveAccessibleName('Marketplace')
+})
+*/
