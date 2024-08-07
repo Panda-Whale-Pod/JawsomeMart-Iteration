@@ -18,9 +18,11 @@ productController.getProducts = async (req, res, next) => {
 productController.getOneProduct = async (req,res,next) => {
   try {
     const id = req.params.id
+    console.log(id);
     const product = await Product.findOne({_id:id})
+    console.log(product);
     res.locals.oneProduct = product
-    next()
+    next();
   } catch (err) {
     return next ({
     message: 'error in getOneProduct: ' + err,
