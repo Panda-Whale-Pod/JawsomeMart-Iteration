@@ -1,4 +1,23 @@
 
+
+/* Navbar.module.css */
+.navContainer {
+    @apply flex justify-between items-center bg-gray-800 p-4;
+  }
+
+.navLeft img {
+    @apply h-8 w-auto;
+}
+
+.navRight {
+    @apply flex space-x-4 list-none;
+}
+
+.navRight li a {
+    @apply text-white hover:text-gray-400;
+}
+
+/* 
 .navContainer{
     display: flex;
     justify-content: space-between;
@@ -51,4 +70,4 @@ nav {
 
 
 
-
+ */
