@@ -49,21 +49,26 @@ const ProductPage = () => {
     }
 
     return (
-        <div>
-            <h1>{product.title}</h1>
-            <div className="image-container">
+        <div className="product-container">
+            <h1 className='text-bold'>{product.title}</h1>
+            <hr></hr>
+            <div className='image-container'>
                 <img src={product.image} alt={product.title} />
             </div>
+            <hr></hr>
             <h4 className='text-bold'>
                 ${product.price} USD
-                <button className="button" onClick={addProductToCart}>
+                <button className='button' onClick={addProductToCart}>
                     Add to Cart
                 </button>
-                Item Category: {product.category}
+                <div className="description-box text-bold">Item Category:</div>
+                <div className="description-box">{product.category}</div>
             </h4>
-            <div className="description-box">
-                About This Item: {product.description}
+            <hr></hr>
+            <div className='description-box text-bold'>
+                About This Item: 
             </div>
+            <div className="description-box">{product.description}</div>
             <div>
                 {/*<h2>Recommended Products</h2>*/}
             </div>
