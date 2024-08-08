@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as cartService from '../../services/cartService.js';
-import './tailwind.css';
+// import './tailwind.css';
+import styles from './ProductPage.module.css';
 
 const ProductPage = () => {
     const { id } = useParams();
@@ -48,26 +49,26 @@ const ProductPage = () => {
     }
 
     return (
-        <div className="product-container">
+        <div className={styles.productContainer}>
             <h1 className='text-bold'>{product.title}</h1>
             <hr></hr>
-            <div className='image-container image-text-container'>
+            <div className={styles.imageTextContainer}>
                 <img src={product.image} alt={product.title} />
             </div>
             <hr></hr>
-            <h4 className='text-bold'>
+            <h4 className={styles.textBold}>
                 ${product.price} USD
-                <button className='button' onClick={addProductToCart}>
+                <button className={styles.button} onClick={addProductToCart}>
                     Add to Cart
                 </button>
-                <div className="description-box text-bold">Item Category:</div>
-                <div className="description-box">{product.category}</div>
+                <div className={styles.descriptionBox}><strong>Item Category:</strong></div>
+                <div className={styles.descriptionBox}>{product.category}</div>
             </h4>
             <hr></hr>
-            <div className='description-box text-bold'>
+            <div className={styles.descriptionBox}>
                 About This Item: 
             </div>
-            <div className="description-box">{product.description}</div>
+            <div className={styles.descriptionBox}>{product.description}</div>
             <div>
                 {/*<h2>Recommended Products</h2>*/}
             </div>

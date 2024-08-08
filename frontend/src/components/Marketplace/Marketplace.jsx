@@ -15,7 +15,7 @@ import { paginationFilter } from './helpers.jsx';
 import Pagination from './Pagination.jsx';
 
 // Importing CSS file
-import './Marketplace.css';
+import styles from './Marketplace.module.css';
 
 // Defines our Marketplace function to be exported
 const Marketplace = () => {
@@ -79,21 +79,21 @@ const Marketplace = () => {
 
   // Returns a styled div containing the rendered products
   return (
-    <div className='marketplace'>
-      <div className='searchBar'>
-        <input className='searchInput' type='text' placeholder='search'></input>
+    <div className={styles.marketplace}>
+      <div className={styles.searchBar}>
+        <input className={styles.searchInput} type='text' placeholder='search'></input>
         <button type='submit'>Submit</button>
       </div>
-      <div className='mainBox'>
-        <div>
+      <div className={styles.mainBox}>
+        <div className={styles.categoryContainer}>
           <Categories
-            className='categories'
+            // className={styles.categories}
             categoryClickHandler={categoryClickHandler}
           />
         </div>
-        <div className='innerBox'>
+        <div className={styles.innerBox}>
           {/* <div className='product-display'>{displayedProducts}</div> */}
-          <div className='product-display'>{paginationFilteredProducts}</div>
+          <div className={styles.productDisplay}>{paginationFilteredProducts}</div>
           <Pagination
             displayedProducts={displayedProducts.length}
             postsPerPage={postsPerPage}

@@ -1,6 +1,7 @@
 // Importing required dependencies
 import * as cartService from '../../services/cartService.js';
 import { useNavigate } from 'react-router-dom';
+import styles from './Marketplace.module.css';
 
 /** 
  * This function takes properties passed from a parent and generates
@@ -26,12 +27,12 @@ const Product = (props) => {
 
     // Returns a product div to be rendered in the marketplace
     return (
-        <div className="product-box" onClick={navigateToProductPage}>
+        <div className={styles.productBox} onClick={navigateToProductPage}>
             <h3>{props.title}</h3>
-            <div className="image-container">
+            <div className={styles.imageContainer}>
                 <img src={props.image} alt={props.title} />
             </div>
-            <h4 className='text-bold'>
+            <h4 className={styles.textBold}>
                 ${props.price} USD
                 <button onClick={(e) => { e.stopPropagation(); addProductToCart(); }}>
                     Add to Cart

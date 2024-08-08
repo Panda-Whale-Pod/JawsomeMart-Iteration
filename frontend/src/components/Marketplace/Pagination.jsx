@@ -1,5 +1,6 @@
 import React from 'react'
-import './Pagination.css'
+// import './Pagination.css'
+import styles from './Marketplace.module.css';
 
 const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPage }) => {
     let pages = [];
@@ -8,16 +9,18 @@ const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPa
         pages.push(i);
     }
     return (
-        <div className='pagination'>
+        <div className={styles.pagination}>
+            <div className={styles.paginationButtons}>
             {pages.map((page, index) => {
                 return (
                     <button key={index} onClick={() => setCurrentPage(page)}
-                        className={page === currentPage ? 'active' : ''}
+                        className={page === currentPage ? styles.active : ''}
                     >
                         {page}
                     </button>
                 );
             })}
+            </div>
         </div>
     )
 }
