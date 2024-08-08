@@ -1,18 +1,13 @@
 TAILWIND
-
-.product-box {
+.productBox {
   @apply bg-white w-[450px] h-[600px] p-[15px] border-2 border-gray-600 rounded-[25px] m-[20px] text-center flex justify-center;
 }
 
-.product-container {
+.productContainer {
   @apply w-[50vw] mx-auto text-center;
 }
 
-.product-box:hover {
-  @apply bg-gray-500;
-}
-
-img {
+.productContainer img {
   @apply max-h-[400px] max-w-[300px] border-2 border-gray-600 rounded-[25px] p-[10px] m-[10px];
 }
 
@@ -24,17 +19,18 @@ img {
   @apply bg-gray-500;
 }
 
-.description-box {
-  @apply font-normal border-0 rounded-[8px] m-[5px];
+.descriptionBox {
+  @apply font-normal border-0 rounded-[8px] m-[5px]
 }
 
-.text-bold {
+.textBold {
   @apply font-bold text-[20px];
 }
 
-.image-text-container {
+.imageTextContainer {
   @apply flex flex-col items-center;
 }
+
 
 /* NORMAL CSS */
 

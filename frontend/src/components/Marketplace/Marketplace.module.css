@@ -1,4 +1,4 @@
-.product-box {
+.productBox {
     background: rgb(255, 255, 255);
     width: 450px;
     height: 600px;
@@ -10,11 +10,16 @@
     justify-content: center;
 }
 
+.productBox:hover {
+  @apply bg-gray-500;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 .searchBar {
   display: flex;
   max-width: 1400px;
@@ -30,13 +35,19 @@
   align-items: flex-start;
 }
 
+.categoryContainer {
+  /* padding: 30px; */
+}
+
 .categories {
   background: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 300px;
+  gap: 10px;
 }
+
 .categoryButton {
   width: 150px;
   align-self: center;
@@ -48,26 +59,30 @@
   justify-content: space-between;
 }
 
-  .product-display {
+  .productDisplay {
     background: rgb(215, 215, 215);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 50px;
+    width: 80 vwh;
+    height: 80 vwh;
   }
 
-  .product-box {
+  .productBox {
     background: rgb(255, 255, 255);
     width: 450px;
-    height: 600px;
+    height: 625px;
     padding: 15px;
     border: 2px solid rgb(85, 85, 85);
     border-radius: 25px;
     margin: 20px;
     text-align: center;
     justify-content: center;
+    box-sizing: border-box;
   }
 
-.product-box .image-container {
+.productBox .imageContainer {
   height: 450px;
   display: flex;
   flex-direction: column;
@@ -96,7 +111,7 @@ h4 {
   border: none;
 }
 
-button {
+.marketplace button {
   border-radius: 30px;
   border: 1px solid rgb(90, 90, 90);
   padding-left: 10px;
@@ -107,12 +122,40 @@ button {
   cursor: pointer;
 }
 
-.product-box .description-box {
+.marketplace button:hover {
+  background-color: rgb(163, 159, 156);
+}
+
+.productBox .descriptionBox {
   border: none;
   border-radius: 8px;
   margin: 5px;
 }
+
 .pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100px;
 }
+
+.paginationButtons {
+  display: flex;
+  gap: 5px;
+}
+
+.pagination button.active {
+  background: rgb(163, 159, 156);
+}
+
+.pagination button {
+  border-radius: 30px;
+    border: 1px solid rgb(90, 90, 90);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
