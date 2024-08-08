@@ -7,10 +7,12 @@
  */
 
 // Importing necessary tools
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import Product from './Product.jsx';
 import Categories from './Categories.jsx';
+import { paginationFilter } from './helpers.jsx';
+import Pagination from './Pagination.jsx';
 
 // Importing CSS file
 import './Marketplace.css';
@@ -21,6 +23,10 @@ const Marketplace = () => {
   const [displayedProducts, setProducts] = useState([]);
   const [arrayOfProducts, setArrayOfProducts] = useState([]);
   const [chosenCategory, setChosenCategory] = useState('');
+  // Create state to keep track of the current page number
+  const [currentPage, setCurrentPage] = useState(1);
+  // Create state to keep track of posts per page
+  const [postsPerPage, setPostsPerPage] = useState(6);
 
   useEffect(() => {
     axios
@@ -54,18 +60,9 @@ const Marketplace = () => {
     setProducts(newProducts);
   };
 
-  const pages = ['1', '2', '3', '4'];
-
-  const pageNumbers = pages.map((page, index) => {
-    return (
-      <button className='pageNumberButton' key={index}>
-        {page}
-      </button>
-    );
-  });
-
   const categoryClickHandler = (e) => {
     setChosenCategory(e.target.id);
+    setCurrentPage(1);
     let newCategory = e.target.id;
     const arr = [];
     for (let i = 0; i < arrayOfProducts.length; i++) {
@@ -75,6 +72,10 @@ const Marketplace = () => {
     }
     displayMarketProducts(arr);
   };
+
+  const paginationFilteredProducts = useMemo(() => {
+    return paginationFilter(displayedProducts, currentPage, postsPerPage);
+  }, [displayedProducts, currentPage, postsPerPage])
 
   // Returns a styled div containing the rendered products
   return (
@@ -91,8 +92,14 @@ const Marketplace = () => {
           />
         </div>
         <div className='innerBox'>
-          <div className='product-display'>{displayedProducts}</div>
-          <div className='pagination'>{pageNumbers}</div>
+          {/* <div className='product-display'>{displayedProducts}</div> */}
+          <div className='product-display'>{paginationFilteredProducts}</div>
+          <Pagination
+            displayedProducts={displayedProducts.length}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>
