@@ -27,6 +27,7 @@ const Marketplace = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // Create state to keep track of posts per page
   const [postsPerPage, setPostsPerPage] = useState(6);
+  const [newSearch, setNewSearch] = useState('');
 
   useEffect(() => {
     axios
@@ -75,15 +76,53 @@ const Marketplace = () => {
 
   const paginationFilteredProducts = useMemo(() => {
     return paginationFilter(displayedProducts, currentPage, postsPerPage);
-  }, [displayedProducts, currentPage, postsPerPage])
+  }, [displayedProducts, currentPage, postsPerPage]);
+
+  const handleSearchInputChange = (e) => {
+    setNewSearch(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (newSearch) {
+      let search = newSearch;
+      const arr = [];
+      for (let i = 0; i < arrayOfProducts.length; i++) {
+        let description = arrayOfProducts[i].description;
+        let lowerDescription = description.toLowerCase();
+        let title = arrayOfProducts[i].title;
+        let lowerTitle = title.toLowerCase();
+        if (
+          description.includes(search) ||
+          lowerDescription.includes(search) ||
+          title.includes(search) ||
+          lowerTitle.includes(search)
+        ) {
+          arr.push(arrayOfProducts[i]);
+        }
+      }
+      setNewSearch('');
+      if (!arr.length) {
+        alert('There are no products matching your search.');
+      } else {
+        displayMarketProducts(arr);
+      }
+    }
+  };
 
   // Returns a styled div containing the rendered products
   return (
     <div className='marketplace'>
-      <div className='searchBar'>
-        <input className='searchInput' type='text' placeholder='search'></input>
+      <form className='searchBar' onSubmit={handleSearchSubmit}>
+        <input
+          className='searchInput'
+          type='text'
+          placeholder='search'
+          value={newSearch}
+          onChange={handleSearchInputChange}
+        ></input>
         <button type='submit'>Submit</button>
-      </div>
+      </form>
       <div className='mainBox'>
         <div>
           <Categories

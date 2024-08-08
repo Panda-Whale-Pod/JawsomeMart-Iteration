@@ -1,0 +1,118 @@
+.product-box {
+  background: rgb(255, 255, 255);
+  width: 450px;
+  height: 600px;
+  padding: 15px;
+  border: 2px solid rgb(85, 85, 85);
+  border-radius: 25px;
+  margin: 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.searchBar {
+  display: flex;
+  max-width: 1400px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mainBox {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.categories {
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+}
+.categoryButton {
+  width: 150px;
+  align-self: center;
+  justify-self: center;
+}
+.innerBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-display {
+  background: rgb(215, 215, 215);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-box {
+  background: rgb(255, 255, 255);
+  width: 450px;
+  height: 600px;
+  padding: 15px;
+  border: 2px solid rgb(85, 85, 85);
+  border-radius: 25px;
+  margin: 20px;
+  text-align: center;
+  justify-content: center;
+}
+
+.product-box .image-container {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  img {
+    max-height: 400px;
+    max-width: 300px;
+    border: none;
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+h3 {
+  border: none;
+  padding: 15px;
+  height: 70px;
+}
+
+h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+}
+
+button {
+  border-radius: 30px;
+  border: 1px solid rgb(90, 90, 90);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.product-box .description-box {
+  border: none;
+  border-radius: 8px;
+  margin: 5px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}
