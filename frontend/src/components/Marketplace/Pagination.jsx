@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Pagination.css'
+import styles from './Marketplace.module.css';
 
 const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPage }) => {
     let pages = [];
@@ -17,7 +17,7 @@ const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPa
         }
         if (pageCount > 4) {
             pages[3] = []; // '...' element
-            for (let i = 4; i <= pageCount-1; i++) {
+            for (let i = 4; i <= pageCount - 1; i++) {
                 pages[3].push(i);
             }
             pages.push(pageCount); // passing in the final page number
@@ -32,40 +32,42 @@ const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPa
 
 
     return (
-        <div className='pagination'>
-            {pages.map((page, index) => {
-                if (Array.isArray(page)) {
-                    return (
-                        <div key={index}>
-                            <button onClick={handleButtonClick}
-                            className={isHidden ? '' : 'hideButton'}
+        <div className={styles.pagination}>
+            <div className={styles.paginationButtons}>
+                {pages.map((page, index) => {
+                    if (Array.isArray(page)) {
+                        return (
+                            <div key={index}>
+                                <button onClick={handleButtonClick}
+                                    className={isHidden ? '' : 'hideButton'}
+                                >
+                                    ...
+                                </button>
+                                {!isHidden && (
+                                    pages[3].map((page, index) => {
+                                        return (
+                                            <button key={index} onClick={() => setCurrentPage(page)}
+                                                className={page === currentPage ? 'active' : ''}
+                                            >
+                                                {page}
+                                            </button>
+                                        );
+                                    })
+                                )}
+                            </div>
+                        )
+                    }
+                    else {
+                        return (
+                            <button key={index} onClick={() => setCurrentPage(page)}
+                                className={page === currentPage ? 'active' : ''}
                             >
-                                ...
+                                {page}
                             </button>
-                            {!isHidden && (
-                                pages[3].map((page, index) => {
-                                    return (
-                                        <button key={index} onClick={() => setCurrentPage(page)}
-                                            className={page === currentPage ? 'active' : ''}
-                                        >
-                                            {page}
-                                        </button>
-                                    );
-                                })
-                            )}
-                        </div>
-                    )
-                }
-                else {
-                    return (
-                        <button key={index} onClick={() => setCurrentPage(page)}
-                            className={page === currentPage ? 'active' : ''}
-                        >
-                            {page}
-                        </button>
-                    );
-                }
-            })}
+                        );
+                    }
+                })}
+            </div>
         </div>
     )
 }
