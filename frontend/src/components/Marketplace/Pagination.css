@@ -12,3 +12,8 @@ button {
 .pagination button.active {
     background: rgb(163, 159, 156);
 }
+
+
+.pagination button.hideButton {
+    display: none;
+}

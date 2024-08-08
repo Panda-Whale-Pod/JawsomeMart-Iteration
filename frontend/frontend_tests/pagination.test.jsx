@@ -35,12 +35,17 @@ describe('Unit testing Pagination', async () => {
         render(<Pagination {...props} />);
     });
 
-    test('Pagination should render a certain number of buttons', () => {
-        console.log(screen.getAllByRole('button').length)
-        expect(screen.getAllByRole('button').length).toBe(12);
+    // test('Pagination should render a certain number of buttons', () => {
+    //     console.log(screen.getAllByRole('button').length)
+    //     expect(screen.getAllByRole('button').length).toBe(12);
+    // });
+
+    test('Expect pagination to limit/hide the number of middle elements', () => {
+        expect(screen.getAllByRole('button').length).toBe(5);
     });
 
-    test('Expect pagination to limit hide the number of middle elements', () => {
-        
-    });
+    // test('Expect there to be ... on the page due to the number of elements there', () => {
+    //     expect(screen.getByText('...')).toBeInTheDocument();
+    // });
+
 })
