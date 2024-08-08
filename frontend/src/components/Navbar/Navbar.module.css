@@ -1,5 +1,4 @@
-
-.navContainer{
+/* .navContainer{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -45,8 +44,27 @@ nav {
 
 .navLeft img {
     max-height: 50px;
+} */
+
+
+
+/* TAILWIND */
+
+.navContainer {
+    @apply flex justify-between items-center bg-gray-800 p-4;
+  }
+
+.navLeft img {
+    @apply h-8 w-auto;
 }
 
+.navRight {
+    @apply flex space-x-4 list-none;
+}
+
+.navRight li a {
+    @apply text-white hover:text-gray-400;
+}
 
 
 
