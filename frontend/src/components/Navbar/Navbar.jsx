@@ -27,10 +27,9 @@ function Navbar({handleSignout}) {
 
   return (
     <>
-      <nav class={styles.navContainer}>
+      <nav>
         {/* <h3>nav bar</h3> */}
-        <div className="container mx-auto flex justify-between items-center">
-
+        <div className={styles.navContainer}>
           <div className={styles.navLeft}>
             <img src={logo} alt="LOGO"/>
           </div>
