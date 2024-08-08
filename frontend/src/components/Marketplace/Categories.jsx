@@ -1,5 +1,7 @@
 // import { useState, useEffect } from 'react';
 
+import styles from './Marketplace.module.css';
+
 const Categories = (props) => {
   const { categoryClickHandler } = props;
   const categoryTitles = [
@@ -13,7 +15,7 @@ const Categories = (props) => {
   const categories = categoryTitles.map((category, index) => {
     return (
       <button
-        className='categoryButton'
+        className={styles.categoryButton}
         id={category}
         key={index}
         onClick={categoryClickHandler}
@@ -23,7 +25,7 @@ const Categories = (props) => {
     );
   });
 
-  return <div>{categories}</div>;
+  return <div className={styles.categories}>{categories}</div>;
 };
 
 export default Categories;

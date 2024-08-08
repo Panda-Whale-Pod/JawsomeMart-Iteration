@@ -15,7 +15,7 @@ import { paginationFilter } from './helpers.jsx';
 import Pagination from './Pagination.jsx';
 
 // Importing CSS file
-import './Marketplace.css';
+import styles from './Marketplace.module.css';
 
 // Defines our Marketplace function to be exported
 const Marketplace = () => {
@@ -112,10 +112,24 @@ const Marketplace = () => {
 
   // Returns a styled div containing the rendered products
   return (
-    <div className='marketplace'>
-      <form className='searchBar' onSubmit={handleSearchSubmit}>
+    // <div className='marketplace'>
+    //   <form className='searchBar' onSubmit={handleSearchSubmit}>
+    //     <input
+    //       className='searchInput'
+    //       type='text'
+    //       placeholder='search'
+    //       value={newSearch}
+    //       onChange={handleSearchInputChange}
+    //     ></input>
+    //     <button type='submit'>Submit</button>
+    //   </form>
+    //   <div className='mainBox'>
+    //     <div>
+
+    <div className={styles.marketplace}>
+      <form className={styles.searchBar} onSubmit={handleSearchSubmit}>
         <input
-          className='searchInput'
+          className={styles.searchInput}
           type='text'
           placeholder='search'
           value={newSearch}
@@ -123,16 +137,18 @@ const Marketplace = () => {
         ></input>
         <button type='submit'>Submit</button>
       </form>
-      <div className='mainBox'>
-        <div>
+      <div className={styles.mainBox}>
+        <div className={styles.categoryContainer}>
           <Categories
-            className='categories'
+            // className={styles.categories}
             categoryClickHandler={categoryClickHandler}
           />
         </div>
-        <div className='innerBox'>
+        <div className={styles.innerBox}>
           {/* <div className='product-display'>{displayedProducts}</div> */}
-          <div className='product-display'>{paginationFilteredProducts}</div>
+          <div className={styles.productDisplay}>
+            {paginationFilteredProducts}
+          </div>
           <Pagination
             displayedProducts={displayedProducts.length}
             postsPerPage={postsPerPage}
