@@ -9,20 +9,21 @@ import ProductPage from '../src/components/Product/ProductPage';
 describe('ProductPage', () => {
   it('navigates to product page when product is clicked', async () => {
     render(
+      // used to simulate routing in tests - allows you to set up initial routes and render different components based on the route
       <MemoryRouter initialEntries={['/Marketplace']}>
         <Routes>
-          <Route path="/product" element={<Marketplace />} />
-          <Route path="/new-page" element={<ProductPage />} />
+          <Route path="/Marketplace" element={<Marketplace />} />
+          <Route path="/products/66ae490625d36af8f8a9c83c" element={<ProductPage />} />
         </Routes>
       </MemoryRouter>
     );
 
     // Simulate the button click
-    const button = screen.getByRole('button', { name: /add to cart/i });
+    const button = screen.getByText('Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops');
     await userEvent.click(button);
 
     // Check if the new page is rendered
-    expect(screen.getByText(/new page content/i)).toBeInTheDocument(); // Replace with actual content from NewPage
+    expect(screen.getByText('Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops')).toBeInTheDocument();
   });
 });
 

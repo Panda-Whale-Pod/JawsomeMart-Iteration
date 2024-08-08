@@ -18,7 +18,6 @@ const ProductPage = () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 setProduct(data);
                 setLoading(false);
             })
