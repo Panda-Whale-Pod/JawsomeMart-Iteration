@@ -33,13 +33,12 @@ const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPa
 
     return (
         <div className={styles.pagination}>
-            <div className={styles.paginationButtons}>
                 {pages.map((page, index) => {
                     if (Array.isArray(page)) {
                         return (
                             <div key={index}>
                                 <button onClick={handleButtonClick}
-                                    className={isHidden ? '' : 'hideButton'}
+                                    className={isHidden ? '' : `${styles.hideButton}`}
                                 >
                                     ...
                                 </button>
@@ -47,7 +46,7 @@ const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPa
                                     pages[3].map((page, index) => {
                                         return (
                                             <button key={index} onClick={() => setCurrentPage(page)}
-                                                className={page === currentPage ? 'active' : ''}
+                                                className={page === currentPage ? `${styles.active}` : ''}
                                             >
                                                 {page}
                                             </button>
@@ -60,14 +59,13 @@ const Pagination = ({ displayedProducts, postsPerPage, setCurrentPage, currentPa
                     else {
                         return (
                             <button key={index} onClick={() => setCurrentPage(page)}
-                                className={page === currentPage ? 'active' : ''}
+                                className={page === currentPage ? `${styles.active}` : ''}
                             >
                                 {page}
                             </button>
                         );
                     }
                 })}
-            </div>
         </div>
     )
 }
