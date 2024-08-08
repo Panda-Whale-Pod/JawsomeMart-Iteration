@@ -1,4 +1,5 @@
-/* TAILWIND */
+TAILWIND
+
 .product-box {
   @apply bg-white w-[450px] h-[600px] p-[15px] border-2 border-gray-600 rounded-[25px] m-[20px] text-center flex justify-center;
 }
