@@ -27,6 +27,7 @@ const Marketplace = () => {
   const [currentPage, setCurrentPage] = useState(1);
   // Create state to keep track of posts per page
   const [postsPerPage, setPostsPerPage] = useState(6);
+  const [newSearch, setNewSearch] = useState('');
 
   useEffect(() => {
     axios
@@ -75,15 +76,67 @@ const Marketplace = () => {
 
   const paginationFilteredProducts = useMemo(() => {
     return paginationFilter(displayedProducts, currentPage, postsPerPage);
-  }, [displayedProducts, currentPage, postsPerPage])
+  }, [displayedProducts, currentPage, postsPerPage]);
+
+  const handleSearchInputChange = (e) => {
+    setNewSearch(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (newSearch) {
+      let search = newSearch;
+      const arr = [];
+      for (let i = 0; i < arrayOfProducts.length; i++) {
+        let description = arrayOfProducts[i].description;
+        let lowerDescription = description.toLowerCase();
+        let title = arrayOfProducts[i].title;
+        let lowerTitle = title.toLowerCase();
+        if (
+          description.includes(search) ||
+          lowerDescription.includes(search) ||
+          title.includes(search) ||
+          lowerTitle.includes(search)
+        ) {
+          arr.push(arrayOfProducts[i]);
+        }
+      }
+      setNewSearch('');
+      if (!arr.length) {
+        alert('There are no products matching your search.');
+      } else {
+        displayMarketProducts(arr);
+      }
+    }
+  };
 
   // Returns a styled div containing the rendered products
   return (
+    // <div className='marketplace'>
+    //   <form className='searchBar' onSubmit={handleSearchSubmit}>
+    //     <input
+    //       className='searchInput'
+    //       type='text'
+    //       placeholder='search'
+    //       value={newSearch}
+    //       onChange={handleSearchInputChange}
+    //     ></input>
+    //     <button type='submit'>Submit</button>
+    //   </form>
+    //   <div className='mainBox'>
+    //     <div>
+
     <div className={styles.marketplace}>
-      <div className={styles.searchBar}>
-        <input className={styles.searchInput} type='text' placeholder='search'></input>
+      <form className={styles.searchBar} onSubmit={handleSearchSubmit}>
+        <input
+          className={styles.searchInput}
+          type='text'
+          placeholder='search'
+          value={newSearch}
+          onChange={handleSearchInputChange}
+        ></input>
         <button type='submit'>Submit</button>
-      </div>
+      </form>
       <div className={styles.mainBox}>
         <div className={styles.categoryContainer}>
           <Categories
@@ -93,7 +146,9 @@ const Marketplace = () => {
         </div>
         <div className={styles.innerBox}>
           {/* <div className='product-display'>{displayedProducts}</div> */}
-          <div className={styles.productDisplay}>{paginationFilteredProducts}</div>
+          <div className={styles.productDisplay}>
+            {paginationFilteredProducts}
+          </div>
           <Pagination
             displayedProducts={displayedProducts.length}
             postsPerPage={postsPerPage}

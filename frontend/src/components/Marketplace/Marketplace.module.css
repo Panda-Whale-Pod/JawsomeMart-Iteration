@@ -1,13 +1,13 @@
 .productBox {
-    background: rgb(255, 255, 255);
-    width: 450px;
-    height: 600px;
-    padding: 15px;
-    border: 2px solid rgb(85, 85, 85);
-    border-radius: 25px;
-    margin: 20px;
-    text-align: center;
-    justify-content: center;
+  background: rgb(255, 255, 255);
+  width: 450px;
+  height: 600px;
+  padding: 15px;
+  border: 2px solid rgb(85, 85, 85);
+  border-radius: 25px;
+  margin: 20px;
+  text-align: center;
+  justify-content: center;
 }
 
 .productBox:hover {
@@ -19,7 +19,6 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 .searchBar {
   display: flex;
   max-width: 1400px;
@@ -59,28 +58,28 @@
   justify-content: space-between;
 }
 
-  .productDisplay {
-    background: rgb(215, 215, 215);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 50px;
-    width: 80 vwh;
-    height: 80 vwh;
-  }
+.productDisplay {
+  background: rgb(215, 215, 215);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 50px;
+  width: 80 vwh;
+  height: 80 vwh;
+}
 
-  .productBox {
-    background: rgb(255, 255, 255);
-    width: 450px;
-    height: 625px;
-    padding: 15px;
-    border: 2px solid rgb(85, 85, 85);
-    border-radius: 25px;
-    margin: 20px;
-    text-align: center;
-    justify-content: center;
-    box-sizing: border-box;
-  }
+.productBox {
+  background: rgb(255, 255, 255);
+  width: 450px;
+  height: 625px;
+  padding: 15px;
+  border: 2px solid rgb(85, 85, 85);
+  border-radius: 25px;
+  margin: 20px;
+  text-align: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
 
 .productBox .imageContainer {
   height: 450px;
@@ -154,12 +153,11 @@ h4 {
 
 .pagination button {
   border-radius: 30px;
-    border: 1px solid rgb(90, 90, 90);
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    margin: 5px;
-    cursor: pointer;
+  border: 1px solid rgb(90, 90, 90);
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 5px;
+  cursor: pointer;
 }
-
