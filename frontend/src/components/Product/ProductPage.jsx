@@ -51,11 +51,7 @@ const ProductPage = () => {
         <div className="product-container">
             <h1 className='text-bold'>{product.title}</h1>
             <hr></hr>
-<<<<<<< HEAD
-            <div className='image-container'>
-=======
             <div className='image-container image-text-container'>
->>>>>>> dev
                 <img src={product.image} alt={product.title} />
             </div>
             <hr></hr>
