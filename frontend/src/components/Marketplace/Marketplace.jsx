@@ -7,9 +7,12 @@
  */
 
 // Importing necessary tools
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import Product from './Product.jsx';
+import Categories from './Categories.jsx';
+import { paginationFilter } from './helpers.jsx';
+import Pagination from './Pagination.jsx';
 
 // Importing CSS file
 import './Marketplace.css';
@@ -18,111 +21,62 @@ import './Marketplace.css';
 const Marketplace = () => {
   // Creates state array to store Product components
   const [displayedProducts, setProducts] = useState([]);
+  const [arrayOfProducts, setArrayOfProducts] = useState([]);
   const [chosenCategory, setChosenCategory] = useState('');
+  // Create state to keep track of the current page number
+  const [currentPage, setCurrentPage] = useState(1);
+  // Create state to keep track of posts per page
+  const [postsPerPage, setPostsPerPage] = useState(6);
 
-  // Creates a new array to hold all products returned from db
-  // const allProducts = [];
-
-  // Function that sends a "GET" request to the DB to fetch product data
-  const getComponents = () => {
-    // Sends a "GET" request for products stored in db
+  useEffect(() => {
     axios
       .get('/api/products')
       .then((res) => {
-        // Function that changes the state of products array
-        setProducts(() => {
-          // Saves the current array in newProducts
-          const newProducts = [];
-          let arr;
-          if (chosenCategory !== '') {
-            console.log('noticed chosen category :', chosenCategory);
-            arr = [];
-            const returnedArr = res.data;
-            for (let i = 0; i < returnedArr.length; i++) {
-              if (returnedArr[i].category === chosenCategory) {
-                console.log('category match: ', returnedArr[i]);
-                arr.push(returnedArr[i]);
-              }
-            }
-          } else {
-            arr = res.data;
-          }
-          console.log('arr: ', arr);
-          // Pushes product components to an array passing in data as props
-          for (let i = 0; i < arr.length; i++) {
-            const newProduct = (
-              <Product
-                product_id={arr[i]._id}
-                id={arr[i].id}
-                title={arr[i].title}
-                price={arr[i].price}
-                category={arr[i].category}
-                description={arr[i].description}
-                image={arr[i].image}
-                rating={arr[i].rating}
-              />
-            );
-
-            // Pushes each product into allProducts array and displayedProducts arr
-            newProducts.push(newProduct);
-            // allProducts.push(newProducts);
-          }
-          return newProducts;
-        });
+        setArrayOfProducts(res.data);
+        displayMarketProducts(res.data);
       })
-
-      // Catches any errors during our get request and displays a message box with the error
       .catch((e) => {
         alert(e);
       });
+  }, []);
+
+  const displayMarketProducts = (arr) => {
+    const newProducts = [];
+    for (let i = 0; i < arr.length; i++) {
+      const newProduct = (
+        <Product
+          product_id={arr[i]._id}
+          id={arr[i].id}
+          title={arr[i].title}
+          price={arr[i].price}
+          category={arr[i].category}
+          description={arr[i].description}
+          image={arr[i].image}
+          rating={arr[i].rating}
+        />
+      );
+      newProducts.push(newProduct);
+    }
+    setProducts(newProducts);
   };
-
-  // Calls the getComponents function so we can render the products
-  useEffect(() => {
-    getComponents();
-    console.log('hit');
-  }, [chosenCategory]);
-
-  const categoryTitles = [
-    'clothes',
-    'shoes',
-    'jewelry',
-    'electronics',
-    'miscellaneous',
-    'furniture',
-  ];
 
   const categoryClickHandler = (e) => {
-    console.log('category in handler', e.target.id);
     setChosenCategory(e.target.id);
-    // const newProducts = displayedProducts.filter((product) => {
-    //   return product.category === chosenCategory;
-    // });
-    // setProducts(newProducts);
+    setCurrentPage(1);
+    let newCategory = e.target.id;
+    const arr = [];
+    for (let i = 0; i < arrayOfProducts.length; i++) {
+      if (arrayOfProducts[i].category === newCategory) {
+        arr.push(arrayOfProducts[i]);
+      }
+    }
+    displayMarketProducts(arr);
   };
 
-  const categoryButtons = categoryTitles.map((category, index) => {
-    return (
-      <button
-        className='categoryButton'
-        id={category}
-        key={index}
-        onClick={categoryClickHandler}
-      >
-        {category}
-      </button>
-    );
-  });
+  const paginationFilteredProducts = useMemo(() => {
+    return paginationFilter(displayedProducts, currentPage, postsPerPage);
+  }, [displayedProducts, currentPage, postsPerPage])
 
-  const pages = ['1', '2', '3', '4'];
-
-  const pageNumbers = pages.map((page, index) => {
-    return (
-      <button className='pageNumberButton' key={index}>
-        {page}
-      </button>
-    );
-  });
   // Returns a styled div containing the rendered products
   return (
     <div className='marketplace'>
@@ -132,11 +86,20 @@ const Marketplace = () => {
       </div>
       <div className='mainBox'>
         <div>
-          <div className='categories'>{categoryButtons}</div>
+          <Categories
+            className='categories'
+            categoryClickHandler={categoryClickHandler}
+          />
         </div>
         <div className='innerBox'>
-          <div className='product-display'>{displayedProducts}</div>
-          <div className='pagination'>{pageNumbers}</div>
+          {/* <div className='product-display'>{displayedProducts}</div> */}
+          <div className='product-display'>{paginationFilteredProducts}</div>
+          <Pagination
+            displayedProducts={displayedProducts.length}
+            postsPerPage={postsPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
         </div>
       </div>
     </div>

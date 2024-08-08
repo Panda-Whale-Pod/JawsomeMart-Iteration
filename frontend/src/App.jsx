@@ -1,6 +1,6 @@
 import { useState, createContext,useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-
+// import './tailwind.css';
 
 
 import Navbar from './components/Navbar/Navbar';
@@ -8,6 +8,7 @@ import Marketplace from './components/Marketplace/Marketplace'
 import Cart from './components/Cart/Cart'
 import SigninForm from './components/Home/SigninForm';
 import SignupForm from './components/Home/SignupForm';
+import ProductPage from './components/Product/ProductPage';
 
 
 import * as authService from '../src/services/authService'
@@ -46,6 +47,7 @@ function App() {
               <>
                 <Route path='/marketplace' element={<Marketplace />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/products/:id' element={<ProductPage />} />
               </> 
             ) : (
               <>
